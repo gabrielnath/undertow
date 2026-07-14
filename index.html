@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Undertow — Pacific Northwest Business &amp; Environment</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    --ink:#14262B;
+    --slate:#33505A;
+    --paper:#F4F5F2;
+    --paper-2:#E8EAE4;
+    --rust:#B8562A;
+    --alert:#9B2C2C;
+    --moss:#5E7A63;
+    --line:#DADDD3;
+  }
+  body{ background:var(--paper); color:var(--ink); font-family:'Source Sans 3',sans-serif; }
+  .logo{ font-family:'Zilla Slab', serif; }
+  .headline{ font-family:'Inter', sans-serif; letter-spacing:-0.02em; }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+  .card{ background:#fff; border:1px solid var(--line); transition:border-color .15s ease; }
+  .card:hover{ border-color:var(--rust); }
+  .prose-body p{ margin-bottom:1.3em; line-height:1.75; font-size:1.0625rem; }
+  .pullquote{ border-left:3px solid var(--rust); padding-left:1.25rem; font-family:'Zilla Slab',serif; font-style:italic; font-size:1.3rem; line-height:1.5; color:var(--ink); }
+  .ripple{ height:1px; background:repeating-linear-gradient(90deg, var(--line) 0 6px, transparent 6px 12px); }
+  .drawer-transition{ transition:transform .35s cubic-bezier(.4,0,.2,1); }
+  .marquee-track{ display:flex; width:max-content; animation:marquee 26s linear infinite; }
+  .marquee-track:hover{ animation-play-state:paused; }
+  @keyframes marquee{ 0%{ transform:translateX(0); } 100%{ transform:translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce){ .marquee-track{ animation:none; } }
+  ::selection{ background:var(--rust); color:#fff; }
+</style>
+</head>
+<body class="antialiased">
+
+  <!-- Nav -->
+  <header class="sticky top-0 z-30 bg-[#F4F5F2]/95 backdrop-blur border-b" style="border-color:var(--line);">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 py-3.5 flex items-center justify-between">
+      <div class="flex items-center gap-8">
+        <span class="logo text-2xl font-bold tracking-tight" style="color:var(--ink);">The Undertow</span>
+        <nav class="hidden md:flex items-center gap-5 text-sm font-medium" style="color:var(--slate);">
+          <a href="#" class="hover:text-[var(--rust)] transition" style="color:var(--ink);">Investigations</a>
+          <a href="#" class="hover:text-[var(--rust)] transition">Business</a>
+          <a href="#" class="hover:text-[var(--rust)] transition">Environment</a>
+          <a href="#" class="hover:text-[var(--rust)] transition">Pacific NW</a>
+          <a href="#" class="hover:text-[var(--rust)] transition">Markets</a>
+        </nav>
+      </div>
+      <div class="flex items-center gap-3">
+        <button class="hidden sm:flex p-2 rounded hover:bg-black/5 transition" style="color:var(--slate);"><i data-lucide="search" class="w-4 h-4"></i></button>
+        <button class="text-xs font-semibold px-4 py-2 rounded-sm transition" style="background:var(--ink); color:#fff;">Subscribe</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Ticker -->
+  <div class="border-b overflow-hidden" style="background:var(--ink); border-color:var(--ink);">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 py-1.5 overflow-hidden">
+      <div class="marquee-track">
+        <span class="mono text-[11px] font-semibold px-1.5 py-0.5 rounded-sm shrink-0 self-center mr-3" style="background:var(--alert); color:#fff;">LIVE</span>
+        <span class="mono text-xs shrink-0 mr-3 self-center" style="color:#fff;">ALPN <span style="color:#e8896b;">$41.18 ▼ 18.4%</span></span>
+        <span class="shrink-0 mr-3 self-center" style="color:#4d6870;">·</span>
+        <span class="mono text-xs shrink-0 mr-3 self-center" style="color:#a9bcb5;">WA Ecology reopens file on Alpine Logistics Corp</span>
+        <span class="shrink-0 mr-3 self-center" style="color:#4d6870;">·</span>
+        <span class="mono text-xs shrink-0 mr-3 self-center" style="color:#a9bcb5;">Third-party ESG certifications face renewed scrutiny</span>
+        <span class="shrink-0 mr-3 self-center" style="color:#4d6870;">·</span>
+        <span class="mono text-[11px] font-semibold px-1.5 py-0.5 rounded-sm shrink-0 self-center mr-3" style="background:var(--alert); color:#fff;">LIVE</span>
+        <span class="mono text-xs shrink-0 mr-3 self-center" style="color:#fff;">ALPN <span style="color:#e8896b;">$41.18 ▼ 18.4%</span></span>
+        <span class="shrink-0 mr-3 self-center" style="color:#4d6870;">·</span>
+        <span class="mono text-xs shrink-0 mr-3 self-center" style="color:#a9bcb5;">WA Ecology reopens file on Alpine Logistics Corp</span>
+        <span class="shrink-0 mr-3 self-center" style="color:#4d6870;">·</span>
+        <span class="mono text-xs shrink-0 mr-3 self-center" style="color:#a9bcb5;">Third-party ESG certifications face renewed scrutiny</span>
+        <span class="shrink-0 mr-3 self-center" style="color:#4d6870;">·</span>
+      </div>
+    </div>
+  </div>
+
+  <main class="max-w-6xl mx-auto px-5 sm:px-8 py-8">
+
+    <!-- Hero + secondary lead -->
+    <div class="grid lg:grid-cols-3 gap-6 pb-10 mb-10 border-b" style="border-color:var(--line);">
+
+      <!-- Lead story: Breaking -->
+      <article class="lg:col-span-2 cursor-pointer group" onclick="openMurderDrawer()">
+        <div class="rounded-sm overflow-hidden mb-4" style="background:var(--paper-2);">
+          <svg viewBox="0 0 900 340" class="w-full h-auto">
+            <g fill="none" stroke="var(--line)" stroke-width="1.5">
+              <path d="M0,70 C150,30 300,110 450,70 C600,30 750,110 900,70" />
+              <path d="M0,120 C150,80 300,160 450,120 C600,80 750,160 900,120" />
+            </g>
+            <!-- mountain ridge -->
+            <path d="M0,290 L120,180 L220,240 L340,110 L460,230 L560,150 L680,260 L800,170 L900,290 Z"
+                  fill="var(--paper)" stroke="var(--slate)" stroke-width="2" opacity="0.9"/>
+            <!-- snow caps, extending further down each summit's slope lines -->
+            <path d="M340,110 L262,194.5 L406,176 Z" fill="#fff" stroke="var(--slate)" stroke-width="1.5" opacity="0.95"/>
+            <path d="M560,150 L500,198 L626,210.5 Z" fill="#fff" stroke="var(--slate)" stroke-width="1.5" opacity="0.95"/>
+            <path d="M800,170 L740,215 L845,224 Z" fill="#fff" stroke="var(--slate)" stroke-width="1.5" opacity="0.95"/>
+            <!-- refuge marker, placed just below the tallest summit -->
+            <circle cx="340" cy="145" r="8" fill="var(--alert)" opacity="0.9"/>
+            <circle cx="340" cy="145" r="16" fill="none" stroke="var(--alert)" stroke-width="2" opacity="0.5"/>
+            <circle cx="340" cy="145" r="25" fill="none" stroke="var(--alert)" stroke-width="1.5" opacity="0.3"/>
+            <text x="358" y="140" class="mono" font-size="12" fill="var(--alert)" font-weight="600">REFUGE DU HOUNIX</text>
+            <text x="358" y="156" class="mono" font-size="10" fill="var(--slate)">~3,800M · 200M FROM REFUGE DU GOUTER</text>
+            <text x="40" y="30" class="mono" font-size="11" fill="var(--slate)" letter-spacing="1">MONT BLANC MASSIF, FRANCE</text>
+          </svg>
+        </div>
+        <span class="mono text-xs font-semibold tracking-widest uppercase" style="color:var(--alert);">Breaking · Crime</span>
+        <h2 class="headline font-extrabold leading-[1.08] mt-2 mb-2 group-hover:underline decoration-2" style="font-size:clamp(1.6rem, 3.2vw, 2.4rem); color:var(--ink);">
+          Alpine Logistics Co-Founder Ethan Moreau Found Dead at Remote Alpine Refuge
+        </h2>
+        <p class="text-base leading-snug mb-3" style="color:var(--slate);">
+          Moreau, 31, was discovered unresponsive in his private quarters at the Refuge du Hounix, a private lodge near the summit of Mont Blanc, by a fellow guest. The Strategic Crisis Response Command has opened an investigation and named nine people present at the retreat as persons of interest.
+        </p>
+        <div class="flex items-center gap-3 mono text-xs" style="color:var(--slate);">
+          <span>By Naomi Voss</span><span>·</span><span>June 23, 2026</span><span>·</span><span>6 min read</span>
+        </div>
+      </article>
+
+      <!-- Secondary lead column -->
+      <div class="flex flex-col gap-6">
+        <article class="cursor-pointer group" onclick="openDrawer()">
+          <span class="mono text-xs font-semibold tracking-widest uppercase" style="color:var(--rust);">Investigation · Developing</span>
+          <h3 class="headline font-bold text-lg leading-snug mt-1.5 mb-1.5 group-hover:underline" style="color:var(--ink);">
+            The Study That Built Alpine Logistics Is Now Tearing It Down
+          </h3>
+          <p class="text-sm" style="color:var(--slate);">A quietly circulated math paper, an independent field study, and a reopened state investigation all point to the same conclusion.</p>
+          <div class="mono text-xs mt-2" style="color:var(--slate);">May 19, 2026 · 11 min</div>
+        </article>
+        <div class="ripple"></div>
+        <article class="cursor-pointer group">
+          <span class="mono text-xs font-semibold tracking-widest uppercase" style="color:var(--moss);">Markets</span>
+          <h3 class="headline font-bold text-lg leading-snug mt-1.5 mb-1.5 group-hover:underline" style="color:var(--ink);">
+            Alpine Logistics Shares Slide as Investors Digest Data Concerns
+          </h3>
+          <p class="text-sm" style="color:var(--slate);">Trading volume nearly quadrupled after Ecology's Friday memo, with two analysts suspending their ratings pending review.</p>
+          <div class="mono text-xs mt-2" style="color:var(--slate);">May 19, 2026 · 4 min</div>
+        </article>
+        <div class="ripple"></div>
+        <article class="cursor-pointer group">
+          <span class="mono text-xs font-semibold tracking-widest uppercase" style="color:var(--rust);">Profile</span>
+          <h3 class="headline font-bold text-lg leading-snug mt-1.5 mb-1.5 group-hover:underline" style="color:var(--ink);">
+            Meet the Reluctant Mathematician Whose Side Project Sank a Logistics Giant
+          </h3>
+          <p class="text-sm" style="color:var(--slate);">These days she's better known as a travel influencer and outdoor photographer. That's part of why almost no one saw this coming.</p>
+          <div class="mono text-xs mt-2" style="color:var(--slate);">May 20, 2026 · 7 min</div>
+        </article>
+      </div>
+    </div>
+
+    <!-- Grid of other stories -->
+    <div class="mb-3 flex items-center justify-between">
+      <h4 class="headline font-bold text-sm tracking-wide uppercase" style="color:var(--ink);">More From The Undertow</h4>
+      <span class="mono text-xs" style="color:var(--slate);">See all →</span>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 pb-12 mb-10 border-b" style="border-color:var(--line);">
+
+      <article class="card rounded-sm p-4 cursor-pointer">
+        <span class="mono text-[11px] font-semibold tracking-widest uppercase" style="color:var(--slate);">Environment</span>
+        <h5 class="headline font-bold text-[15px] leading-snug mt-1.5 mb-1.5" style="color:var(--ink);">
+          What Is 6PPD-Quinone, and Why Is It Suddenly Everywhere in the News?
+        </h5>
+        <p class="text-xs" style="color:var(--slate);">A tire additive discovered in 2020 keeps turning up at the center of the country's messiest corporate environmental disputes.</p>
+        <div class="mono text-[11px] mt-2" style="color:var(--slate);">May 18, 2026 · 6 min</div>
+      </article>
+
+      <article class="card rounded-sm p-4 cursor-pointer">
+        <span class="mono text-[11px] font-semibold tracking-widest uppercase" style="color:var(--moss);">Business</span>
+        <h5 class="headline font-bold text-[15px] leading-snug mt-1.5 mb-1.5" style="color:var(--ink);">
+          The Startup That Says It Can Turn Tire Dust Into Road Asphalt
+        </h5>
+        <p class="text-xs" style="color:var(--slate);">A Tacoma founder pitches a fix for the same particles now at the center of a regional scandal.</p>
+        <div class="mono text-[11px] mt-2" style="color:var(--slate);">May 17, 2026 · 5 min</div>
+      </article>
+
+      <article class="card rounded-sm p-4 cursor-pointer">
+        <span class="mono text-[11px] font-semibold tracking-widest uppercase" style="color:var(--slate);">Pacific NW</span>
+        <h5 class="headline font-bold text-[15px] leading-snug mt-1.5 mb-1.5" style="color:var(--ink);">
+          City Council Approves Long-Delayed Ballard Bridge Repairs
+        </h5>
+        <p class="text-xs" style="color:var(--slate);">Construction begins in July after a decade of deferred maintenance requests.</p>
+        <div class="mono text-[11px] mt-2" style="color:var(--slate);">May 16, 2026 · 3 min</div>
+      </article>
+
+      <article class="card rounded-sm p-4 cursor-pointer">
+        <span class="mono text-[11px] font-semibold tracking-widest uppercase" style="color:var(--rust);">Business</span>
+        <h5 class="headline font-bold text-[15px] leading-snug mt-1.5 mb-1.5" style="color:var(--ink);">
+          Local Coffee Chain Expands to Portland After Series B Round
+        </h5>
+        <p class="text-xs" style="color:var(--slate);">Fourteen new locations planned across the metro by year's end.</p>
+        <div class="mono text-[11px] mt-2" style="color:var(--slate);">June 19, 2026 · 4 min</div>
+      </article>
+
+      <article class="card rounded-sm p-4 cursor-pointer">
+        <span class="mono text-[11px] font-semibold tracking-widest uppercase" style="color:var(--moss);">Environment</span>
+        <h5 class="headline font-bold text-[15px] leading-snug mt-1.5 mb-1.5" style="color:var(--ink);">
+          Forecast: Sun Breaks Return to the Sound After a Soggy Stretch
+        </h5>
+        <p class="text-xs" style="color:var(--slate);">After one of the wettest starts to summer in six years, forecasters promise clearer skies through the week.</p>
+        <div class="mono text-[11px] mt-2" style="color:var(--slate);">June 18, 2026 · 2 min</div>
+      </article>
+
+    </div>
+
+    <footer class="mono text-xs flex flex-col sm:flex-row justify-between gap-3 pb-6" style="color:var(--slate);">
+      <span>Pixelora Studio · 2026</span>
+      <button onclick="openLegalModal()" class="underline hover:text-[var(--rust)] transition text-left">Legal Disclaimer</button>
+    </footer>
+  </main>
+
+  <!-- Legal Disclaimer Modal -->
+  <div id="legalModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/40 backdrop-blur-sm p-4">
+    <div class="bg-white rounded-sm border max-w-md w-full p-6 shadow-xl space-y-3" style="border-color:var(--line);">
+      <h4 class="headline font-bold text-lg" style="color:var(--ink);">Legal Disclaimer</h4>
+      <p class="text-sm leading-relaxed" style="color:var(--slate);">
+        The Undertow is a fictional publication. All articles, bylines, companies, and events depicted are invented for narrative purposes as part of an original story and do not describe real people, companies, or events.
+      </p>
+      <button onclick="closeLegalModal()" class="mt-2 w-full text-xs font-semibold py-2.5 rounded-sm transition" style="background:var(--ink); color:#fff;">Close</button>
+    </div>
+  </div>
+
+  <!-- Reading Drawer -->
+  <div id="storyDrawer" class="fixed inset-0 z-50 hidden">
+    <div class="absolute inset-0 bg-black/30" onclick="closeDrawer()"></div>
+    <div id="drawerPanel" class="absolute inset-y-0 right-0 w-full lg:w-[60%] bg-white shadow-2xl transform translate-x-full drawer-transition overflow-y-auto">
+      <div class="sticky top-0 bg-white border-b flex items-center justify-between px-5 py-3.5 z-10" style="border-color:var(--line);">
+        <span class="mono text-xs font-semibold tracking-widest uppercase" style="color:var(--slate);">Reading Mode</span>
+        <button onclick="closeDrawer()" class="p-1.5 rounded hover:bg-black/5"><i data-lucide="x" class="w-5 h-5" style="color:var(--slate);"></i></button>
+      </div>
+      <div class="max-w-2xl mx-auto px-6 sm:px-10 py-8 sm:py-10">
+        <span class="mono text-xs font-semibold tracking-widest uppercase" style="color:var(--rust);">Investigation · Developing</span>
+        <h2 class="headline font-extrabold leading-[1.1] mt-2 mb-4" style="font-size:clamp(1.75rem, 4vw, 2.6rem); color:var(--ink);">
+          The Study That Built Alpine Logistics Is Now Tearing It Down
+        </h2>
+        <p class="text-lg leading-snug mb-5" style="color:var(--slate); font-weight:500;">
+          A quietly circulated math paper, an independent field study, and a newly reopened state investigation all point to the same conclusion: the data behind Alpine's celebrated environmental turnaround does not hold up.
+        </p>
+        <div class="flex flex-wrap items-center gap-x-3 gap-y-1 mono text-xs pb-6 mb-6 border-b" style="color:var(--slate); border-color:var(--line);">
+          <span>By <strong style="color:var(--ink);">Teddy Osei</strong>, Senior Investigations Reporter</span>
+          <span>·</span><span>SEATTLE, WA</span><span>·</span><span>May 19, 2026</span>
+        </div>
+
+        <div class="prose-body" style="color:var(--ink);">
+          <p><strong>In the fall of 2019</strong>, adult coho salmon began dying by the dozens in Harmon Creek, a modest tributary that runs past what was then a fast-growing regional trucking hub in Washington's Kent Valley. Within weeks, state regulators had traced the die-off to stormwater runoff carrying 6PPD-quinone, a tire-wear byproduct now known to be lethal to coho at concentrations measured in parts per billion. The Washington State Department of Ecology issued an administrative order. The company responsible, Alpine Logistics Corp, installed a stormwater retrofit and commissioned an independent study to show it worked.</p>
+
+          <p>That study is the reason Alpine Logistics exists, in its current form, at all.</p>
+
+          <p>Published in May 2021 by a graduate researcher at the University of Cambridge, the paper reported a 92 percent reduction in toxic runoff following the retrofit, alongside a corresponding drop in salmon mortality. It became the centerpiece of Alpine's public turnaround story — cited in sustainability filings, investor decks, and, eventually, a Department of Ecology closure of the matter entirely. The company's valuation has grown more than sixfold since.</p>
+
+          <p>Now that story is unraveling, and it started, improbably, with a favor between friends.</p>
+
+          <h3 class="font-bold text-xl pt-3 pb-1" style="color:var(--ink);">A Side Project, Circulated Quietly</h3>
+
+          <p>In October 2024, a Cambridge-trained mathematician — best known in academic circles for an unrelated, celebrated result in number theory — ran a purely statistical check on the 2021 paper's published tables, at the private request of an acquaintance weighing an investment in Alpine. The write-up was never meant to be public. Its most striking finding required no statistics at all: recomputing each treatment site's reduction percentage directly from the paper's own published concentration figures produced three different numbers — 91.9, 92.1, and 92.2 percent — not the single, identical 92.0 percent the study had reported for all three. The analysis also noted a discrepancy between the study's text, which described five sites with complete before-and-after data, and its own table, which showed only four; flagged a pattern in the reported figures that deviated from the digit distribution expected of genuine environmental measurements; and pointed to the exclusion, from the study's final results, of the single site with the highest recorded contamination — attributed to equipment failure that occurred nowhere else in the nine-site monitoring network.</p>
+
+          <p>"None of these findings speak to the underlying environmental chemistry," the analysis states. "They concern only the internal statistical consistency of the published dataset. We take no position on intent."</p>
+
+          <p>The analysis circulated informally for months before a science journalist, independently investigating Alpine's sustainability claims, obtained a copy and posted it publicly in March 2025. Reached for comment after it began drawing attention, the author — who has largely stepped back from academic mathematics in favor of outdoor photography and a travel-focused social media following — seemed unbothered by the scrutiny. <span class="pullquote block my-6">"wait people are actually using my notes to drag her?? it's literally just maths, nothing personal!! i didn't even want this public. people are turning equations into a witch hunt nowadays :( put some respect on the brilliant environmental scientist, she literally did the actual heavy lifting in the mud!"</span></p>
+
+          <h3 class="font-bold text-xl pt-3 pb-1" style="color:var(--ink);">Independent Confirmation, Twice Over</h3>
+
+          <p>A A single statistical critique might have been dismissed as noise. It wasn't left to stand alone. In January, statisticians at the London School of Economics published a follow-up analysis benchmarking the Harmon Creek dataset — using the corrected, recomputed reduction figures rather than the study's originally printed numbers — against 34 comparable, independently audited stormwater compliance studies, and found it to be a significant outlier on every measure examined, at a level not observed in any comparison study.</p>
+
+          <p>The following month, researchers at the University of Washington's Center for Urban Waters did something neither prior analysis could: they went back to the creek. Resampling the excluded outfall directly, they measured 6PPD-quinone concentrations well above the threshold known to be acutely lethal to coho — inconsistent with the facility-wide performance the 2021 study had implied. Their report also points to a more mundane explanation running alongside the numbers: the retrofit's bioretention media, they found, had never been serviced or replaced since its 2020 installation, a maintenance lapse consistent with a well-documented failure mode in which such systems lose their contaminant-absorbing capacity over time.</p>
+
+          <p>The Washington State Department of Ecology reopened its file on the matter in April. A preliminary memorandum released this month confirms the agency's own re-inspection found the same unserviced media, and states that a determination on Alpine's compliance status — and on whether the 2021 study should ever have closed the case — is pending.</p>
+
+          <h3 class="font-bold text-xl pt-3 pb-1" style="color:var(--ink);">A Company, and a Friendship, Under Pressure</h3>
+
+          <p>Alpine Logistics Corp declined an interview request for this story. In a brief statement, a company spokesperson said Alpine "stands behind the science that has guided our environmental program" and is "cooperating fully" with the Department's review.</p>
+
+          <p>Privately, the picture is reportedly less settled. According to a person familiar with internal discussions, Alpine's founder has raised the possibility of commissioning a fully independent audit of the company's environmental data — and of getting ahead of the story by disclosing its findings publicly, whatever they turn out to be, rather than waiting for regulators to do it first. No final decision had been made as of this week.</p>
+
+          <p>The 2021 study's lead author, now a research scientist at the Cascadia Institute for Watershed Sciences, has not responded to requests for comment. The paper itself remains published, unretracted, and now carries an editorial expression of concern.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reading Drawer: Murder Story -->
+  <div id="murderDrawer" class="fixed inset-0 z-50 hidden">
+    <div class="absolute inset-0 bg-black/30" onclick="closeMurderDrawer()"></div>
+    <div id="murderPanel" class="absolute inset-y-0 right-0 w-full lg:w-[60%] bg-white shadow-2xl transform translate-x-full drawer-transition overflow-y-auto">
+      <div class="sticky top-0 bg-white border-b flex items-center justify-between px-5 py-3.5 z-10" style="border-color:var(--line);">
+        <span class="mono text-xs font-semibold tracking-widest uppercase" style="color:var(--slate);">Reading Mode</span>
+        <button onclick="closeMurderDrawer()" class="p-1.5 rounded hover:bg-black/5"><i data-lucide="x" class="w-5 h-5" style="color:var(--slate);"></i></button>
+      </div>
+      <div class="max-w-2xl mx-auto px-6 sm:px-10 py-8 sm:py-10">
+        <span class="mono text-xs font-semibold tracking-widest uppercase" style="color:var(--alert);">Breaking · Crime</span>
+        <h2 class="headline font-extrabold leading-[1.1] mt-2 mb-4" style="font-size:clamp(1.75rem, 4vw, 2.6rem); color:var(--ink);">
+          Alpine Logistics Co-Founder Ethan Moreau Found Dead at Remote Alpine Refuge
+        </h2>
+        <p class="text-lg leading-snug mb-5" style="color:var(--slate); font-weight:500;">
+          Moreau, 31, was discovered unresponsive in his private quarters at the Refuge du Hounix, a private lodge near the summit of Mont Blanc, by a fellow guest. The Strategic Crisis Response Command has opened an investigation and named nine people present at the retreat as persons of interest.
+        </p>
+        <div class="flex flex-wrap items-center gap-x-3 gap-y-1 mono text-xs pb-6 mb-6 border-b" style="color:var(--slate); border-color:var(--line);">
+          <span>By <strong style="color:var(--ink);">Naomi Voss</strong>, Breaking News</span>
+          <span>·</span><span>CHAMONIX, FRANCE</span><span>·</span><span>June 23, 2026</span>
+        </div>
+
+        <div class="prose-body" style="color:var(--ink);">
+          <p><strong>Ethan Moreau</strong>, the 31-year-old co-founder and chief executive of Alpine Logistics Corp, was found dead early this morning in his private quarters at the Refuge du Hounix, a private lodge perched near 3,800 meters on the slopes of Mont Blanc, roughly 200 meters from the well-known Refuge du Gouter and reachable only via the Tramway du Mont-Blanc and a demanding, multi-hour climb. The refuge is privately owned by a longtime friend of Moreau's, who was hosting a small private gathering there at the time, according to a person with knowledge of the investigation. The owner discovered Moreau's body and alerted refuge staff shortly after sunrise. SCRC has not released the names of the refuge's owner or any other individual present.</p>
+
+          <p>Given Moreau's public profile and the remote, restricted-access nature of the location, SCRC — the federal body with jurisdiction over cases implicating significant economic or public interest — has assumed control of the investigation, a spokesperson confirmed Tuesday. French alpine authorities are assisting.</p>
+
+          <p>No cause of death has been released, and investigators say they have not ruled out foul play. Nine individuals who were staying at the refuge overnight have been identified as persons of interest: the eight guests attending the private gathering, along with the refuge's resident physician, who is typically on site given the altitude and limited access to emergency care. SCRC said the designation reflects standard procedure for anyone present at a restricted location at the time of an unexplained death and does not by itself imply suspicion of wrongdoing. The agency declined to release names, though several of those present are understood to be prominent individuals in their own right, a fact investigators say has complicated the sensitivity of the inquiry.</p>
+
+          <p>The refuge is not normally open to the public and is used almost exclusively by its owner and invited guests. It is unclear how long the group had been in residence before Tuesday.</p>
+
+          <p>Moreau's death lands in the middle of a separate and escalating crisis for the company he built: statistical and field research published over the past year and a half has raised serious questions about the environmental data Alpine used to certify a major stormwater remediation project, and Washington regulators, who reopened a formal review of the company's compliance record in April, released a preliminary memorandum last month raising further concerns. A person close to Moreau said he had recently discussed commissioning a fully independent audit of that data and disclosing the results publicly, regardless of what they showed, rather than waiting for regulators to act first. Alpine Logistics' board, in a brief statement, called Moreau "a visionary founder" and said the company would have no further comment while the investigation is ongoing. Shares were halted ahead of Tuesday's opening bell.</p>
+
+          <p>Officials have not indicated whether the two matters are believed to be related. This is a developing story and will be updated.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+    const drawer = document.getElementById('storyDrawer');
+    const panel = document.getElementById('drawerPanel');
+    function openDrawer(){
+      drawer.classList.remove('hidden');
+      requestAnimationFrame(()=> panel.classList.remove('translate-x-full'));
+      document.body.classList.add('overflow-hidden');
+    }
+    function closeDrawer(){
+      panel.classList.add('translate-x-full');
+      document.body.classList.remove('overflow-hidden');
+      setTimeout(()=> drawer.classList.add('hidden'), 350);
+    }
+
+    const murderDrawer = document.getElementById('murderDrawer');
+    const murderPanel = document.getElementById('murderPanel');
+    function openMurderDrawer(){
+      murderDrawer.classList.remove('hidden');
+      requestAnimationFrame(()=> murderPanel.classList.remove('translate-x-full'));
+      document.body.classList.add('overflow-hidden');
+    }
+    function closeMurderDrawer(){
+      murderPanel.classList.add('translate-x-full');
+      document.body.classList.remove('overflow-hidden');
+      setTimeout(()=> murderDrawer.classList.add('hidden'), 350);
+    }
+
+    const legalModal = document.getElementById('legalModal');
+    function openLegalModal(){
+      legalModal.classList.remove('hidden');
+      legalModal.classList.add('flex');
+    }
+    function closeLegalModal(){
+      legalModal.classList.add('hidden');
+      legalModal.classList.remove('flex');
+    }
+  </script>
+
+</body>
+</html>

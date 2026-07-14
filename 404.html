@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — The Undertow</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    --ink:#14262B;
+    --slate:#33505A;
+    --paper:#F4F5F2;
+    --paper-2:#E8EAE4;
+    --rust:#B8562A;
+    --alert:#9B2C2C;
+    --moss:#5E7A63;
+    --line:#DADDD3;
+  }
+  body{ background:var(--paper); color:var(--ink); font-family:'Source Sans 3',sans-serif; }
+  .logo{ font-family:'Zilla Slab', serif; }
+  .headline{ font-family:'Inter', sans-serif; letter-spacing:-0.02em; }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+  ::selection{ background:var(--rust); color:#fff; }
+</style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+  <!-- Nav -->
+  <header class="border-b" style="border-color:var(--line);">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 py-3.5 flex items-center justify-between">
+      <a href="undertow.html" class="logo text-2xl font-bold tracking-tight" style="color:var(--ink);">The Undertow</a>
+      <nav class="hidden md:flex items-center gap-5 text-sm font-medium" style="color:var(--slate);">
+        <a href="undertow.html" class="hover:text-[var(--rust)] transition">Investigations</a>
+        <a href="undertow.html" class="hover:text-[var(--rust)] transition">Business</a>
+        <a href="undertow.html" class="hover:text-[var(--rust)] transition">Environment</a>
+        <a href="undertow.html" class="hover:text-[var(--rust)] transition">Pacific NW</a>
+        <a href="undertow.html" class="hover:text-[var(--rust)] transition">Markets</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Error state -->
+  <main class="flex-1 flex items-center justify-center px-5 py-16">
+    <div class="max-w-lg w-full text-center space-y-6">
+
+      <div class="flex justify-center">
+        <div class="w-16 h-16 rounded-full flex items-center justify-center" style="background:var(--paper-2); border:1px solid var(--line);">
+          <i data-lucide="waves" class="w-7 h-7" style="color:var(--slate);"></i>
+        </div>
+      </div>
+
+      <div class="space-y-2">
+        <span class="mono text-xs font-semibold tracking-widest uppercase" style="color:var(--rust);">Error 404</span>
+        <h1 class="headline font-extrabold leading-tight" style="font-size:clamp(2rem, 5vw, 2.75rem); color:var(--ink);">
+          This Story Doesn't Exist — Or Was Pulled
+        </h1>
+      </div>
+
+      <p class="text-base leading-relaxed" style="color:var(--slate);">
+        The page you're looking for may have been unpublished, moved, or never existed at this address. If you followed a link from elsewhere, it may be out of date.
+      </p>
+
+      <div class="text-left mono text-xs rounded-sm p-4 space-y-1" style="background:#fff; border:1px solid var(--line); color:var(--slate);">
+        <div class="flex justify-between"><span>Status</span><span style="color:var(--ink); font-weight:600;">404 — Not Found</span></div>
+        <div class="flex justify-between"><span>Requested by</span><span style="color:var(--ink);">Anonymous Reader</span></div>
+        <div class="flex justify-between"><span>Archive Response</span><span style="color:var(--ink);">No matching story</span></div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+        <a href="undertow.html" class="px-5 py-2.5 rounded-sm text-xs font-semibold transition flex items-center gap-2" style="background:var(--ink); color:#fff;">
+          Back to Homepage <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </a>
+        <span class="mono text-xs" style="color:var(--slate);">or search above</span>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="border-t" style="border-color:var(--line);">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 py-6 flex flex-col sm:flex-row justify-between gap-3 mono text-xs" style="color:var(--slate);">
+      <span>Pixelora Studio · 2026</span>
+      <span>Legal Disclaimer</span>
+    </div>
+  </footer>
+
+  <script>lucide.createIcons();</script>
+</body>
+</html>
